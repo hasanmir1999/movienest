@@ -1,0 +1,247 @@
+@import "tailwindcss";
+/* tiptap styles */
+.tiptap {
+  line-height: 1.75;
+  font-size: 1rem;
+  color: oklch(70.7% 0.022 261.325); /* Tailwind's gray-900 */
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* عناوین */
+
+.info h1 {
+  font-size: 2rem;           /* text-3xl */
+  font-weight: 700;
+  margin: 1.5rem 0 1rem;
+}
+
+.info h2 {
+  font-size: 1.5rem;         /* text-2xl */
+  font-weight: 600;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.info h3 {
+  font-size: 1.25rem;        /* text-xl */
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+}
+
+.info h4 {
+  font-size: 1.125rem;       /* text-lg */
+  font-weight: 600;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.info h5 {
+  font-size: 1rem;           /* text-base */
+  font-weight: 600;
+  margin: 0.5rem 0 0.5rem;
+}
+
+.info h6 {
+  font-size: 0.875rem;       /* text-sm */
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem;
+}
+
+/* لیست‌ها */
+.info ul,
+.info ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.info ul {
+  list-style-type: disc;
+}
+
+.info ol {
+  list-style-type: decimal;
+}
+
+.info li {
+  margin-bottom: 0.25rem;
+}
+
+/* نقل قول */
+.info blockquote {
+  padding-left: 1rem;
+  border-left: 4px solid #d1d5db; /* Tailwind's gray-300 */
+  color: #6b7280;                 /* Tailwind's gray-500 */
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+/* خط افقی */
+.info hr {
+  border: none;
+  margin: 10px 0;
+  border-top: 1px solid #e5e7eb;  /* Tailwind's gray-200 */
+  margin: 2rem 0;
+}
+
+
+
+
+.tiptap h1 {
+  font-size: 2rem;           /* text-3xl */
+  font-weight: 700;
+  margin: 1.5rem 0 1rem;
+}
+
+.tiptap h2 {
+  font-size: 1.5rem;         /* text-2xl */
+  font-weight: 600;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.tiptap h3 {
+  font-size: 1.25rem;        /* text-xl */
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+}
+
+.tiptap h4 {
+  font-size: 1.125rem;       /* text-lg */
+  font-weight: 600;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.tiptap h5 {
+  font-size: 1rem;           /* text-base */
+  font-weight: 600;
+  margin: 0.5rem 0 0.5rem;
+}
+
+.tiptap h6 {
+  font-size: 0.875rem;       /* text-sm */
+  font-weight: 600;
+  margin: 0.5rem 0 0.25rem;
+}
+
+/* لیست‌ها */
+.tiptap ul,
+.tiptap ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tiptap ul {
+  list-style-type: disc;
+}
+
+.tiptap ol {
+  list-style-type: decimal;
+}
+
+.tiptap li {
+  margin-bottom: 0.25rem;
+}
+
+/* نقل قول */
+.tiptap blockquote {
+  padding-left: 1rem;
+  border-left: 4px solid #d1d5db; /* Tailwind's gray-300 */
+  color: #6b7280;                 /* Tailwind's gray-500 */
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+/* خط افقی */
+.tiptap hr {
+  border: none;
+  margin: 10px 0;
+  border-top: 1px solid #e5e7eb;  /* Tailwind's gray-200 */
+  margin: 2rem 0;
+}
+
+
+/* tiptap styles */
+
+/* remove arrow */
+
+.no-spin::-webkit-inner-spin-button,
+.no-spin::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spin {
+  -moz-appearance: textfield;
+}
+
+/* remove arrow */
+
+
+/* custom scrollbar */
+/* width */
+.scroll::-webkit-scrollbar {
+    width: 25px;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+    background: oklch(75% 0.183 55.934);
+    border-radius: 30px;
+    border: 8px solid black;
+    transition: 0.3s;
+    cursor: grab;
+}
+
+/* width */
+.scroll2::-webkit-scrollbar {
+    width: 25px;
+}
+
+/* Handle */
+.scroll2::-webkit-scrollbar-thumb {
+    background: oklch(75% 0.183 55.934);
+    border-radius: 30px;
+    border: 8px solid black;
+    transition: 0.3s;
+    cursor: grab;
+}
+
+.dirltr{
+    direction: ltr
+}
+
+.dirrtl{
+    direction: rtl
+}
+/* custom scrollbar */
+
+.swal-popup {
+  @apply border-2 border-gray-400 rounded-lg;
+}
+
+
+
+@theme {
+    --animate-bottomTop: bottomTop 1.5s forwards;
+    --animate-streach: streach .5s forwards;
+    --shadow-top: 0px -10px 60px 80px rgba(0, 0, 0, 0.25);
+    --shadow-btm: 0px 10px 60px 80px rgba(0, 0, 0, 0.25);
+    @keyframes bottomTop {
+      0%{
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+        transform:  translateY(0);
+      }
+    }
+    @keyframes streach {
+      0%{
+        transform:scaleX(0);
+      }
+      100% {
+        transform:scaleX(1.4);
+      }
+    }
+}
