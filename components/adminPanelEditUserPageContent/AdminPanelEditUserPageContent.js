@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { updateUser } from "@/redux/slices/usersSlice";
 
-export default function AdminPanelEditUserPageContent({ params }) {
+export default function AdminPanelEditUserPageContent({_id}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter()
   const dispatch = useDispatch()
@@ -20,11 +20,11 @@ export default function AdminPanelEditUserPageContent({ params }) {
     email: "",
     role: "",
   });
-  const paramsR = use(params);
+
 
   const loadData = async () => {
     const data = await fetchWithToken(
-      `https://movienest.liara.run/api/admin/user/${paramsR._id}`
+      `https://movienest.liara.run/api/admin/user/${_id}`
     );
     const { username, role, email } = data;
     setFormData({ username, role, email });
@@ -50,7 +50,7 @@ export default function AdminPanelEditUserPageContent({ params }) {
     }
 
     try {
-      dispatch(updateUser({id:paramsR._id , newData: formData}))
+      dispatch(updateUser({id:_id , newData: formData}))
       toast.success("User update successfuly!");
       setLoading(false);
       router.push("/adminpanel/users");
