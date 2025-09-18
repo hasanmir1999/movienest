@@ -1,12 +1,51 @@
 "use client";
 
+import { updateProfile } from "@/redux/slices/profileSlice";
+import { checkEmpty } from "@/utils/checkEmpty";
+import { validation } from "@/utils/validation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa6";
 import { TbTriangleFilled } from "react-icons/tb";
-
+import { useDispatch, useSelector } from "react-redux";
 
 export default function UserPanelEditmePageContent() {
   const [passState, setPassState] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { user } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    username: user && user.username,
+    email: user && user.email,
+  });
+
+  const editMeHandler = async () => {
+    setLoading(true);
+
+    if (checkEmpty(formData)) {
+      toast.error("Please fill in all fields!");
+      setLoading(false);
+      return;
+    }
+
+    if (validation(formData).stat) {
+      toast.error(validation(formData).message);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      dispatch(updateProfile({ data: formData }));
+      toast.success("update successfuly!");
+      setLoading(false);
+      router.push("/adminpanel");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -25,6 +64,10 @@ export default function UserPanelEditmePageContent() {
                 <input
                   type="text"
                   id="username"
+                  onChange={(e) =>
+                    setFormData({ ...formData, username: e.target.value })
+                  }
+                  value={formData.username || ""}
                   className="border-gray-300 border-[1px] rounded-sm w-full h-[35px] outline-none text-gray-300 pl-2 bg-transparent"
                 />
               </div>
@@ -35,6 +78,10 @@ export default function UserPanelEditmePageContent() {
                 <input
                   type="email"
                   id="email"
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  value={formData.email || ""}
                   className="border-gray-300 border-[1px] rounded-sm w-full h-[35px] outline-none text-gray-300 pl-2 bg-transparent"
                 />
               </div>
@@ -61,11 +108,12 @@ export default function UserPanelEditmePageContent() {
               </div>
               <div className="btn-container flex justify-end mt-10">
                 <button
-                  onClick={(e) => signupHandler(e)}
+                  onClick={editMeHandler}
                   type="button"
                   className="text-white bg-orange-400 rounded-md py-1 px-5 cursor-pointer w-full"
                 >
                   Edit info
+                  {loading && <FaSpinner className="text-white animate-spin" />}
                 </button>
               </div>
             </form>
