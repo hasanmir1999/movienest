@@ -5,6 +5,8 @@ import { PostWithToken } from "@/utils/postWithToken";
 
 export const fetchCart = createAsyncThunk("cart/fetchCartStatus", async () => {
   const res = await fetchWithToken(`https://movienest.liara.run/api/user/cart`);
+  console.log(res);
+  
   return res;
 });
 

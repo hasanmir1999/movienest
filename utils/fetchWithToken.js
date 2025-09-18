@@ -17,9 +17,12 @@ export const fetchWithToken = async (url, options = {}) => {
     ...options,
     headers,
   });
+    if (res.status === 404) {
+    return null;
+  }
 
   if (!res.ok) {
-    return { status: res.status, message: `Request failed with status: ${res.status}` };
+    throw new Error(`Request failed with status: ${res.status}`);
   }
 
   return res.json();

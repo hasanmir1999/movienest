@@ -14,29 +14,25 @@ export default function UserInfoSubInfo({ id }) {
     return date;
   };
 
-  const daysLeft = differenceInDays(subPlan && subPlan.end_date, new Date());
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetchWithToken(
-          `https://movienest.liara.run/api/admin/users/active-subscription/${id}`
-        );
+const daysLeft = subPlan ? differenceInDays(new Date(subPlan.end_date), new Date()) : 0;
 
-        if (res.status && res.status !== 200) {
-          setSubPlan(null);
-        } else {
-          setSubPlan(res);
-        }
-      } catch (error) {
-        console.error("Failed to fetch subscription:", error);
-        setSubPlan(null);
-      }
-    };
-
-    if (id) {
-      fetchData();
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await fetchWithToken(
+        `https://movienest.liara.run/api/admin/users/active-subscription/${id}`
+      );
+      setSubPlan(res);
+    } catch (error) {
+      console.error("Failed to fetch subscription:", error);
+      setSubPlan(null);
     }
-  }, [id]);
+  };
+
+  if (id) {
+    fetchData();
+  }
+}, [id]);
 
   return (
     <>
