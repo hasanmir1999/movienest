@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { deleteUser } from "@/redux/slices/usersSlice";
 
-export default function UserListCard({ id, username, role, pro = false }) {
+export default function UserListCard({ id, username, role, pro = true }) {
   const [dropState, setDropState] = useState(false);
   const dispatch = useDispatch();
   const deleteHandler = () => {
@@ -76,47 +76,50 @@ export default function UserListCard({ id, username, role, pro = false }) {
           </div>
         </div>
 
-        {role && role != "admin" && (
-          <div
-            onClick={() => setDropState(!dropState)}
-            className="res-btn sm:hidden relative cursor-pointer text-gray-400"
-          >
-            <HiDotsVertical className="text-xl" />
-            {dropState && (
-              <div className="drop-menu absolute w-52 bg-gray-700 right-0 top-8 rounded-md p-1 z-10">
-                <ul>
-                  <li className="py-0.5 group">
-                    <Link
-                      className="flex justify-between items-center p-1 rounded-md group-hover:bg-orange-400 group-hover:text-white transition-all duration-300"
-                      href={`/adminpanel/users/userinfo/${id}`}
-                    >
-                      <p className="text-sm">info</p>
-                      <MdOutlineInfo className="text-lg" />
-                    </Link>
-                  </li>
-                  <li className="py-0.5 group">
-                    <Link
-                      className="flex justify-between items-center p-1 rounded-md group-hover:bg-orange-400 group-hover:text-white transition-all duration-300"
-                      href={`/adminpanel/users/edituser/${id}`}
-                    >
-                      <p className="text-sm">edit info</p>
-                      <RiPencilLine className="text-lg" />
-                    </Link>
-                  </li>
-                  <li className="py-0.5 group">
-                    <div
-                      className="flex justify-between items-center cursor-pointer p-1 rounded-md group-hover:bg-orange-400 group-hover:text-white transition-all duration-300"
-                      onClick={deleteHandler}
-                    >
-                      <p className="text-sm">delete</p>
-                      <RiDeleteBin5Line className="text-lg" />
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
+        <div
+          onClick={() => setDropState(!dropState)}
+          className="res-btn sm:hidden relative cursor-pointer text-gray-400"
+        >
+          <HiDotsVertical className="text-xl" />
+          {dropState && (
+            <div className="drop-menu absolute w-52 bg-gray-700 right-0 top-8 rounded-md p-1 z-10">
+              <ul>
+                <li className="py-0.5 group">
+                  <Link
+                    className="flex justify-between items-center p-1 rounded-md group-hover:bg-orange-400 group-hover:text-white transition-all duration-300"
+                    href={`/adminpanel/users/userinfo/${id}`}
+                  >
+                    <p className="text-sm">info</p>
+                    <MdOutlineInfo className="text-lg" />
+                  </Link>
+                </li>
+                {role && role != "admin" && (
+                  <>
+                    {" "}
+                    <li className="py-0.5 group">
+                      <Link
+                        className="flex justify-between items-center p-1 rounded-md group-hover:bg-orange-400 group-hover:text-white transition-all duration-300"
+                        href={`/adminpanel/users/edituser/${id}`}
+                      >
+                        <p className="text-sm">edit info</p>
+                        <RiPencilLine className="text-lg" />
+                      </Link>
+                    </li>
+                    <li className="py-0.5 group">
+                      <div
+                        className="flex justify-between items-center cursor-pointer p-1 rounded-md group-hover:bg-orange-400 group-hover:text-white transition-all duration-300"
+                        onClick={deleteHandler}
+                      >
+                        <p className="text-sm">delete</p>
+                        <RiDeleteBin5Line className="text-lg" />
+                      </div>
+                    </li>
+                  </>
+                )}
+              </ul>
+            </div>
+          )}
+        </div>
 
         <div className="user-btns hidden sm:flex mr-2 sm:mr-5 items-center gap-2 sm:gap-3">
           <Link
@@ -128,8 +131,8 @@ export default function UserListCard({ id, username, role, pro = false }) {
               info
             </span>
           </Link>
-          {role && role != "admin" &&
-            (<>
+          {role && role != "admin" && (
+            <>
               <Link
                 href={`/adminpanel/users/edituser/${id}`}
                 className="text-gray-400 text-lg sm:text-xl relative group"
@@ -148,8 +151,8 @@ export default function UserListCard({ id, username, role, pro = false }) {
                   delete
                 </span>
               </div>
-            </>)
-          }
+            </>
+          )}
         </div>
       </div>
     </>

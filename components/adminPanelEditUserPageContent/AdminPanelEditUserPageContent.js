@@ -1,7 +1,7 @@
 "use client";
 
 import { fetchWithToken } from "@/utils/fetchWithToken";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa6";
 import { TbTriangleFilled } from "react-icons/tb";
 import { validation } from "@/utils/validation";

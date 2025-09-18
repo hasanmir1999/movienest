@@ -19,8 +19,7 @@ export default function SignUpPageContent() {
     password: "",
   });
 
-
-  const router = useRouter()
+  const router = useRouter();
 
   const checkEmpty = () => {
     for (let key in formData) {
@@ -36,6 +35,12 @@ export default function SignUpPageContent() {
       toast.error(
         "Username must start with a letter and be 4–25 characters long, containing only letters, numbers, or _ ."
       );
+      return true;
+    }
+    if (
+      !formData.email.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)
+    ) {
+      toast.error("Email invalied .");
       return true;
     }
     if (
@@ -75,7 +80,7 @@ export default function SignUpPageContent() {
         password: "",
       });
       setLoading(false);
-      router.push('/signin')
+      router.push("/signin");
     } catch (error) {
       setLoading(false);
       toast.error(error.message);
@@ -88,10 +93,10 @@ export default function SignUpPageContent() {
       setLoading(false);
       return;
     }
-    if (validation()){
+    if (validation()) {
       setLoading(false);
       return;
-    } 
+    }
     postData();
   };
 
@@ -179,7 +184,7 @@ export default function SignUpPageContent() {
                 className="text-white bg-orange-400 rounded-md py-1 px-5 cursor-pointer flex items-center gap-2"
               >
                 Sign up
-                {loading && <FaSpinner className="text-white animate-spin" /> }
+                {loading && <FaSpinner className="text-white animate-spin" />}
               </button>
             </div>
             <div className="line bg-gray-400 w-full h-[1px] mt-10" />
