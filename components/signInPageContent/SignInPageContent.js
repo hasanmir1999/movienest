@@ -44,12 +44,6 @@ export default function SignInPageContent() {
       return true;
     }
     if (
-      !formData.email.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)
-    ) {
-      toast.error("Email invalied .");
-      return true;
-    }
-    if (
       !formData.password.match(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).+$/
       )
